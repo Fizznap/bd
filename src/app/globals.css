@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — warm scrapbook palette + typography
+   ============================================================ */
+@theme {
+  --color-cream: #fff9f2;
+  --color-blush: #f8dde5;
+  --color-rose: #efa8bc;
+  --color-burgundy: #7b354d;
+  --color-warm-white: #ffffff;
+  --color-ink: #5a4149;
+  --color-peach: #fce8dc;
+
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* One corner-radius system: paper/media cards 18px,
+     interactive elements are pills. */
+  --radius-paper: 18px;
+
+  /* Rose-tinted shadow scale (no pure black) */
+  --shadow-paper: 0 10px 30px -12px rgb(123 53 77 / 0.22);
+  --shadow-lift: 0 22px 44px -16px rgb(123 53 77 / 0.3);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-cream font-sans text-ink antialiased;
+  background-image: radial-gradient(
+      1200px 500px at 85% -5%,
+      rgb(248 221 229 / 0.5),
+      transparent 60%
+    ),
+    radial-gradient(900px 420px at -10% 30%, rgb(252 232 220 / 0.55), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgb(239 168 188 / 0.45);
+  color: #7b354d;
+}
+
+/* Visible focus for keyboard users */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-burgundy);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   FILM GRAIN — fixed, pointer-safe, sits under dialogs
+   ============================================================ */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   PAPER & SCRAPBOOK TEXTURES
+   (in the components layer so Tailwind utilities can override)
+   ============================================================ */
+@layer components {
+  /* Warm stationery card with slightly irregular (hand-cut) edges */
+  .paper-card {
+    background-color: var(--color-warm-white);
+    border: 1px solid rgb(239 168 188 / 0.28);
+    box-shadow: var(--shadow-paper);
+    border-radius: 16px 20px 14px 19px / 19px 14px 20px 16px;
+  }
+
+  /* Very subtle paper fibre texture for letter cards */
+  .paper-texture {
+    background-image: radial-gradient(rgb(159 122 134 / 0.07) 0.8px, transparent 0.8px);
+    background-size: 14px 14px;
+  }
+
+  /* Washi tape strips (decorative, semi-transparent) */
+  .washi {
+    position: absolute;
+    height: 1.75rem;
+    width: 6.5rem;
+    background: linear-gradient(
+      100deg,
+      rgb(248 221 229 / 0.92),
+      rgb(239 168 188 / 0.65) 55%,
+      rgb(248 221 229 / 0.92)
+    );
+    box-shadow: 0 2px 6px rgb(123 53 77 / 0.14);
+    border-left: 1px dashed rgb(255 255 255 / 0.6);
+    border-right: 1px dashed rgb(255 255 255 / 0.6);
+    opacity: 0.85;
+  }
+
+  .washi-peach {
+    background: linear-gradient(
+      100deg,
+      rgb(252 232 220 / 0.95),
+      rgb(250 214 190 / 0.7) 55%,
+      rgb(252 232 220 / 0.95)
+    );
+  }
+
+  .washi-rose {
+    background: linear-gradient(
+      100deg,
+      rgb(239 168 188 / 0.8),
+      rgb(248 221 229 / 0.9) 50%,
+      rgb(239 168 188 / 0.8)
+    );
+  }
+
+  /* Polaroid frame */
+  .polaroid {
+    background-color: var(--color-warm-white);
+    padding: 0.6rem 0.6rem 1.9rem;
+    border-radius: 4px;
+    box-shadow: 0 12px 28px -10px rgb(123 53 77 / 0.28);
+  }
+
+  /* Film perforation bars for film-strip cards */
+  .film-perf-v {
+    background-color: #241017;
+    background-image: radial-gradient(
+      circle 2.5px at 50% 50%,
+      rgb(255 249 242 / 0.85) 96%,
+      transparent 100%
+    );
+    background-size: 100% 16px;
+    background-repeat: repeat-y;
+  }
+
+  .film-perf-h {
+    background-color: #241017;
+    background-image: radial-gradient(
+      circle 2.5px at 50% 50%,
+      rgb(255 249 242 / 0.85) 96%,
+      transparent 100%
+    );
+    background-size: 16px 100%;
+    background-repeat: repeat-x;
+  }
+}
+
+/* ============================================================
+   MOTION (CSS) — decorative loops, honouring reduced motion
+   ============================================================ */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, -6%, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12%,
+  82% {
+    opacity: var(--deco-opacity, 0.5);
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 10px), 106%, 0) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .anim-float {
+    animation: float-y 5.5s ease-in-out infinite;
+  }
+  .anim-drift {
+    animation: drift var(--deco-duration, 9s) linear infinite;
+  }
+  .anim-twinkle {
+    animation: twinkle 3.2s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float,
+  .anim-drift,
+  .anim-twinkle {
+    animation: none;
+  }
+  /* Keep drifting decorations visible but motionless */
+  .anim-drift {
+    opacity: 0.35 !important;
+  }
+}

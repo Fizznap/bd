@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="640" viewBox="0 0 480 640" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8DDE5"/>
+      <stop offset="1" stop-color="#FCE8DC"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="640" fill="url(#bg)"/>
+  <rect x="18" y="18" width="444" height="604" rx="14" fill="none" stroke="#EFA8BC" stroke-width="2" stroke-dasharray="10 8" opacity="0.7"/>
+  <g transform="translate(240 285)">
+    <path d="M0 42 C -10 30 -34 18 -34 -2 C -34 -18 -20 -26 -8 -20 C -2 -17 0 -12 0 -12 C 0 -12 2 -17 8 -20 C 20 -26 34 -18 34 -2 C 34 18 10 30 0 42 Z" fill="#EFA8BC"/>
+  </g>
+  <text x="240" y="380" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="26" fill="#7B354D">A memory is on its way</text>
+  <text x="240" y="416" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#5A4149" opacity="0.7">this frame is waiting for its video</text>
+  <g transform="translate(120 505)" opacity="0.55">
+    <circle cx="0" cy="0" r="3" fill="#EFA8BC"/>
+    <circle cx="26" cy="6" r="2.2" fill="#EFA8BC" opacity="0.7"/>
+    <circle cx="12" cy="-14" r="2" fill="#EFA8BC" opacity="0.5"/>
+  </g>
+</svg>
